@@ -1,0 +1,36 @@
+import face_recognition
+import os
+import pickle
+
+# Path to the folder containing the training images
+TRAINING_IMAGES_DIR = "training_images"
+
+# List to hold face encodings and corresponding user names
+known_face_encodings = []
+known_face_names = []
+
+# Loop through all images in the training folder
+for filename in os.listdir(TRAINING_IMAGES_DIR):
+    if filename.endswith(".jpg") or filename.endswith(".png"):
+        # Extract the user name from the file (e.g., 'john_1.jpg' -> 'john')
+        user_name = filename.split('_')[0]
+
+        # Load the image
+        image_path = os.path.join(TRAINING_IMAGES_DIR, filename)
+        image = face_recognition.load_image_file(image_path)
+
+        # Find the face encodings for the face in the image
+        face_encodings = face_recognition.face_encodings(image)
+
+        if len(face_encodings) > 0:
+            # Use the first encoding found (for the first face detected in the image)
+            known_face_encodings.append(face_encodings[0])
+            known_face_names.append(user_name)
+
+        print(f"Processed {filename} for user {user_name}")
+
+# Save the face encodings and names into a file (training.pkl)
+with open('training.pkl', 'wb') as f:
+    pickle.dump((known_face_encodings, known_face_names), f)
+
+print("Training data saved to training.pkl")
