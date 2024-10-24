@@ -11,18 +11,15 @@ let config = {
 	modules: [
 		{
 			module: "alert",
-			classes: "always",  // Always visible
 		},
 		{
 			module: "clock",
 			position: "top_left",
-			classes: "default",  // Always show clock
 		},
 		{
 			module: "calendar",
 			header: "Indian Holidays",
 			position: "top_left",
-			classes: "default",  // Always show calendar
 			config: {
 				calendars: [
 					{
@@ -36,7 +33,6 @@ let config = {
 		{
 			module: "compliments",
 			position: "lower_third",
-			classes: "default",  // Always show compliments
 			config: {
 				compliments: {
 					anytime: ["Hey there!"],  // Default message
@@ -51,7 +47,6 @@ let config = {
 		{
 			module: "weather",
 			position: "top_right",
-			classes: "default",  // Always show weather
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
@@ -62,7 +57,6 @@ let config = {
 		{
 			module: "newsfeed",
 			position: "bottom_bar",
-			classes: "default",  // Always show news feed
 			config: {
 				feeds: [
 					{
@@ -121,6 +115,9 @@ let config = {
 							{
 								fire: "SHOW_COMPLIMENT",
 								payload: (payload) => "Hey there, " + payload.name + "!"  // Send greeting for known face
+							},
+							{
+								fire: "SHOW_MODULES"  // Show modules when known face detected
 							}
 						]
 					},
@@ -133,6 +130,9 @@ let config = {
 							{
 								fire: "SHOW_COMPLIMENT",
 								payload: () => "Hey there, Stranger!"  // Send message for unknown person
+							},
+							{
+								fire: "SHOW_MODULES"  // Show modules when unknown face detected
 							}
 						]
 					},
