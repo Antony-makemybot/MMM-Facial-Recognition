@@ -1,80 +1,17 @@
-var config = {
-    address: "0.0.0.0",  // Set to 0.0.0.0 to listen on all IP interfaces.
-    port: 8080,
-    ipWhitelist: [],      // Access the MagicMirror from any device within the network.
-
-    language: "en",
-    timeFormat: 24,
-    units: "metric",
-
-    modules: [
-        // Add the Facial Recognition DNN Module
-        {
-            module: 'MMM-Facial-Recognition-DNN',
-            config: {
-                useDNN: true,
-                interval: 5,  // Check for faces every 5 seconds
-                logoutDelay: 15,  // Logout after 15 seconds without face detection
-                users: ["John", "Jane"],  // Trained users
-                welcomeMessage: true  // Show welcome message when a user is recognized
-            }
-        },
-
-        // Default modules for everyone (visible to all users)
-        {
-            module: "clock",
-            position: "top_left",
-            classes: "everyone"
-        },
-
-        {
-            module: "calendar",
-            position: "top_right",
-            config: {
-                calendars: [
-                    {
-                        symbol: "calendar-check",
-                        url: "https://calendar.google.com/calendar/ical/your-calendar-url.ics"
-                    }
-                ]
-            },
-            classes: "everyone"
-        },
-
-        // Modules visible only to "John"
-        {
-            module: "weather",
-            position: "top_right",
-            config: {
-                location: "New York",
-                locationID: "5128581",  // Use the ID from OpenWeatherMap for your location
-                apiKey: "your_openweather_api_key"
-            },
-            classes: "John"
-        },
-
-        // Modules visible only to "Jane"
-        {
-            module: "newsfeed",
-            position: "bottom_bar",
-            config: {
-                feeds: [
-                    {
-                        title: "BBC News",
-                        url: "http://feeds.bbci.co.uk/news/rss.xml"
-                    }
-                ]
-            },
-            classes: "Jane"
-        },
-
-        // Modules visible to no recognized user (default for strangers)
-        {
-            module: "compliments",
-            position: "lower_third",
-            classes: "default"
-        }
-    ]
-};
-
-if (typeof module !== "undefined") {module.exports = config;}
+{
+    module: 'MMM-Facial-Recognition',
+    config: {
+        recognitionAlgorithm: 1, // Use LBPH algorithm
+        lbphThreshold: 50,
+        fisherThreshold: 250,
+        eigenThreshold: 3000,
+        useUSBCam: false, // Set to true if using an external USB camera
+        trainingFile: 'modules/MMM-Facial-Recognition/training.pkl', // Path to your training.pkl
+        interval: 2, // Check for a face every 2 seconds
+        logoutDelay: 15, // Logout after 15 seconds of no face detected
+        users: ['Sona', 'Antony'], // Add the names you've trained on
+        defaultClass: "default", // Show default modules for strangers
+        everyoneClass: "everyone", // Modules shown for every user
+        welcomeMessage: true, // Enable a welcome message for users
+    }
+}
