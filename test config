@@ -1,0 +1,79 @@
+let config = {
+	address: "localhost",
+	port: 8080,
+	ipWhitelist: ["127.0.0.1", "::ffff:127.0.0.1", "::1"],
+
+	language: "en",
+	locale: "en-US",
+	timeFormat: 24,
+	units: "metric",
+
+	modules: [
+		{
+			module: "clock",
+			position: "top_left",
+			classes: "default everyone"
+		},
+		{
+			module: "weather",
+			position: "top_right",
+			classes: "default everyone",
+			config: {
+				weatherProvider: "openmeteo",
+				type: "current",
+				lat: 10.00758306891496,
+				lon: 76.35566169991439
+			}
+		},
+		{
+			module: "newsfeed",
+			position: "bottom_bar",
+			classes: "default everyone",
+			config: {
+				feeds: [
+					{
+						title: "BBC News",
+						url: "http://feeds.bbci.co.uk/news/world/rss.xml"
+					}
+				],
+				showSourceTitle: true,
+				showPublishDate: true
+			}
+		},
+		{
+			module: 'MMM-Face-Reco-DNN',
+			config: {
+				logoutDelay: 60000, // Increase to 60 seconds for testing
+				checkInterval: 2000,
+				noFaceClass: 'noface',
+				unknownClass: 'unknown',
+				knownClass: 'known',
+				defaultClass: 'default',
+				everyoneClass: 'everyone',
+				alwaysClass: 'always',
+				cascade: 'modules/MMM-Face-Reco-DNN/model/haarcascade_frontalface_default.xml',
+				encodings: 'modules/MMM-Face-Reco-DNN/model/encodings.pickle',
+				brightness: 0,
+				contrast: 0,
+				rotateCamera: -1,
+				method: 'dnn',
+				detectionMethod: 'hog',
+				animationSpeed: 0,
+				pythonPath: null,
+				welcomeMessage: true,
+				extendDataset: false,
+				dataset: 'modules/MMM-Face-Reco-DNN/dataset/',
+				tolerance: 0.6,
+				multiUser: 0,
+				resolution: [640, 480],
+				processWidth: 300,
+				outputmm: 0,
+				debug: 1, // Enable debugging
+				delay: 1000000
+			}
+		}
+	]
+};
+
+/*************** DO NOT EDIT THE LINE BELOW ***************/
+if (typeof module !== "undefined") { module.exports = config; }
