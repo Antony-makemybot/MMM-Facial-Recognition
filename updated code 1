@@ -11,15 +11,18 @@ let config = {
 	modules: [
 		{
 			module: "alert",
+			classes: "always",  // Always visible
 		},
 		{
 			module: "clock",
 			position: "top_left",
+			classes: "default known unknown",  // Show for known and unknown faces
 		},
 		{
 			module: "calendar",
 			header: "Indian Holidays",
 			position: "top_left",
+			classes: "default known unknown",  // Show for known and unknown faces
 			config: {
 				calendars: [
 					{
@@ -33,9 +36,10 @@ let config = {
 		{
 			module: "compliments",
 			position: "lower_third",
+			classes: "default known",  // Only show for known faces
 			config: {
 				compliments: {
-					anytime: ["Hey there!"],  // Default message
+					anytime: ["Hey there!"],  // This will be updated by NotificationTrigger
 					morning: ["Good morning!"],
 					afternoon: ["Hello, sunshine!"],
 					evening: ["Wow, you look fantastic!"]
@@ -47,6 +51,7 @@ let config = {
 		{
 			module: "weather",
 			position: "top_right",
+			classes: "default known unknown",  // Show for known and unknown faces
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
@@ -57,6 +62,7 @@ let config = {
 		{
 			module: "newsfeed",
 			position: "bottom_bar",
+			classes: "default known unknown",  // Show for known and unknown faces
 			config: {
 				feeds: [
 					{
@@ -73,13 +79,13 @@ let config = {
 		{
 			module: 'MMM-Face-Reco-DNN',
 			config: {
-				logoutDelay: 15000,
-				checkInterval: 2000,
-				noFaceClass: 'noface',  // Class when no face is detected
-				unknownClass: 'unknown',  // Class when unknown face is detected
-				knownClass: 'known',  // Class when known face is detected
+				logoutDelay: 15000,  // Logout 15 seconds after user is not detected anymore
+				checkInterval: 2000,  // Face detection every 2 seconds
+				noFaceClass: 'noface',  // Class to apply when no face is detected
+				unknownClass: 'unknown',  // Class to apply when an unknown face is detected
+				knownClass: 'known',  // Class to apply when a known face is detected
 				defaultClass: 'default',  // Default class for modules
-				everyoneClass: 'everyone',  // Class for everyone detected
+				everyoneClass: 'everyone',  // Show for everyone (any face detected)
 				alwaysClass: 'always',  // Always show these modules
 				cascade: 'modules/MMM-Face-Reco-DNN/model/haarcascade_frontalface_default.xml',
 				encodings: 'modules/MMM-Face-Reco-DNN/model/encodings.pickle',
@@ -90,7 +96,7 @@ let config = {
 				detectionMethod: 'hog',
 				animationSpeed: 0,
 				pythonPath: null,
-				welcomeMessage: false,  // Disable built-in welcome message
+				welcomeMessage: false,  // Turn off default welcome message
 				extendDataset: false,
 				dataset: 'modules/MMM-Face-Reco-DNN/dataset/',
 				tolerance: 0.6,
@@ -98,7 +104,7 @@ let config = {
 				resolution: [640, 480],
 				processWidth: 300,
 				outputmm: 0,
-				debug: 0,
+				debug: 0,  // Disable debugging
 				delay: 1000000
 			}
 		},
@@ -106,18 +112,15 @@ let config = {
 			module: "MMM-NotificationTrigger",
 			config: {
 				triggers: [
-					// Trigger for known face detection
+					// Trigger for when a known face is detected
 					{
 						trigger: "FACE_DETECTED",
 						triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
-						triggerValueFilter: (payload) => payload.name !== "unknown",  // Check for known face
+						triggerValueFilter: (payload) => payload.name !== "unknown",  // Check if the face is known
 						fires: [
 							{
 								fire: "SHOW_COMPLIMENT",
-								payload: (payload) => "Hey there, " + payload.name + "!"  // Send greeting for known face
-							},
-							{
-								fire: "SHOW_MODULES"  // Show modules when known face detected
+								payload: (payload) => "Hey there, " + payload.name + "!"  // Send greeting
 							}
 						]
 					},
@@ -125,24 +128,11 @@ let config = {
 					{
 						trigger: "FACE_DETECTED",
 						triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
-						triggerValueFilter: (payload) => payload.name === "unknown",  // Check for unknown face
+						triggerValueFilter: (payload) => payload.name === "unknown",  // Check if face is unknown
 						fires: [
 							{
 								fire: "SHOW_COMPLIMENT",
 								payload: () => "Hey there, Stranger!"  // Send message for unknown person
-							},
-							{
-								fire: "SHOW_MODULES"  // Show modules when unknown face detected
-							}
-						]
-					},
-					// Trigger for no face detected
-					{
-						trigger: "NO_FACE_DETECTED",
-						triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
-						fires: [
-							{
-								fire: "HIDE_MODULES"  // Hide all modules
 							}
 						]
 					}
