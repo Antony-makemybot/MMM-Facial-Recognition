@@ -1,0 +1,2 @@
+pi@raspberrypi:~/MagicMirror/modules/MMM-Facial-Recognition $ python3 train_faces.py
+python3: can't open file '/home/pi/MagicMirror/modules/MMM-Facial-Recognition/train_faces.py': [Errno 2] No such file or directory
