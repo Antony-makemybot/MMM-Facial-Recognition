@@ -10,8 +10,19 @@ let config = {
 
 	modules: [
 		{
+			module: 'MMM-SimpleLogo',
+			position: 'top_left',
+			classes: "default everyone",  // Visible for everyone
+			config: {}
+		},
+		{
 			module: "alert",
 			classes: "always",  // Always visible
+		},
+		{
+			module: "updatenotification",
+			position: "top_bar",
+			classes: "default everyone",  // Visible for everyone
 		},
 		{
 			module: "clock",
@@ -39,10 +50,21 @@ let config = {
 			classes: "default known",  // Only show for known faces
 			config: {
 				compliments: {
-					anytime: ["Hey there!"],  // This will be updated by NotificationTrigger
-					morning: ["Good morning!"],
-					afternoon: ["Hello, sunshine!"],
-					evening: ["Wow, you look fantastic!"]
+					anytime: [
+						"Hey there!",
+					],
+					morning: [
+						"Good morning!",
+						"Enjoy your day!",
+					],
+					afternoon: [
+						"Hello, sunshine!",
+						"You're looking great!",
+					],
+					evening: [
+						"Wow, you look fantastic!",
+						"Enjoy your evening!",
+					]
 				},
 				updateInterval: 30000,
 				fadeSpeed: 4000,
@@ -55,6 +77,18 @@ let config = {
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
+				lat: 10.00758306891496,
+				lon: 76.35566169991439
+			}
+		},
+		{
+			module: "weather",
+			position: "top_right",
+			header: "Weather Forecast",
+			classes: "default known unknown",  // Show for known and unknown faces
+			config: {
+				weatherProvider: "openmeteo",
+				type: "forecast",
 				lat: 10.00758306891496,
 				lon: 76.35566169991439
 			}
@@ -96,7 +130,7 @@ let config = {
 				detectionMethod: 'hog',
 				animationSpeed: 0,
 				pythonPath: null,
-				welcomeMessage: false,  // Turn off default welcome message
+				welcomeMessage: true,
 				extendDataset: false,
 				dataset: 'modules/MMM-Face-Reco-DNN/dataset/',
 				tolerance: 0.6,
@@ -106,37 +140,6 @@ let config = {
 				outputmm: 0,
 				debug: 0,  // Disable debugging
 				delay: 1000000
-			}
-		},
-		{
-			module: "MMM-NotificationTrigger",
-			config: {
-				triggers: [
-					// Trigger for when a known face is detected
-					{
-						trigger: "FACE_DETECTED",
-						triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
-						triggerValueFilter: (payload) => payload.name !== "unknown",  // Check if the face is known
-						fires: [
-							{
-								fire: "SHOW_COMPLIMENT",
-								payload: (payload) => "Hey there, " + payload.name + "!"  // Send greeting
-							}
-						]
-					},
-					// Trigger for unknown face detection
-					{
-						trigger: "FACE_DETECTED",
-						triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
-						triggerValueFilter: (payload) => payload.name === "unknown",  // Check if face is unknown
-						fires: [
-							{
-								fire: "SHOW_COMPLIMENT",
-								payload: () => "Hey there, Stranger!"  // Send message for unknown person
-							}
-						]
-					}
-				]
 			}
 		}
 	]
