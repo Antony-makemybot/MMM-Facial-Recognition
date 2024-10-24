@@ -7,14 +7,10 @@
                 triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
                 fires: [
                     {
-                        fire: "SHOW_COMPLIMENT",
-                        payload: (payload) => {
-                            // Custom logic based on conditions
-                            return `Hey ${payload.name}, don't forget your umbrella today!`;
+                        fire: "SHOW_MODULES",  // This will show modules based on your configuration
+                        payload: {
+                            moduleNames: ["compliments", "weather"]  // Specify which modules to show
                         }
-                    },
-                    {
-                        fire: "SHOW_MODULES"
                     }
                 ]
             },
@@ -23,7 +19,10 @@
                 triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
                 fires: [
                     {
-                        fire: "HIDE_MODULES"
+                        fire: "HIDE_MODULES",  // This will hide modules
+                        payload: {
+                            moduleNames: ["compliments", "weather"]  // Specify which modules to hide
+                        }
                     }
                 ]
             }
