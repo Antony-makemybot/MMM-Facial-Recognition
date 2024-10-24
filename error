@@ -1,2 +1,89 @@
-(python-facereco) pi@raspberrypi:~/MagicMirror/modules/MMM-Facial-Recognition $ python3 train_faces.py
-Training data saved to training.pkl
+(python-facereco) pi@raspberrypi:~/MagicMirror/modules/MMM-Facial-Recognition $ ls
+dataset                    node_helper.js           __pycache__     training.pkl
+MMM-Facial-Recognition.js  old_face_recognition.py  train_faces.py
+(python-facereco) pi@raspberrypi:~/MagicMirror/modules/MMM-Facial-Recognition $ gedit verify_training.py
+(python-facereco) pi@raspberrypi:~/MagicMirror/modules/MMM-Facial-Recognition $ python3 verify_training.py
+Known face names: ['Sona', 'Antony']
+Number of face encodings: 2
+(python-facereco) pi@raspberrypi:~/MagicMirror/modules/MMM-Facial-Recognition $ npm run start
+
+> magicmirror@2.29.0 start
+> DISPLAY="${DISPLAY:=:0}" ./node_modules/.bin/electron js/electron.js
+
+[2024-10-24 18:54:13.521] [LOG]   Starting MagicMirror: v2.29.0 
+[2024-10-24 18:54:13.567] [LOG]   Loading config ... 
+[2024-10-24 18:54:13.577] [LOG]   config template file not exists, no envsubst 
+[2024-10-24 18:54:14.473] [INFO]  Checking config file /home/pi/MagicMirror/config/config.js ... 
+[2024-10-24 18:54:14.592] [INFO]  Your configuration file doesn't contain syntax errors :) 
+[2024-10-24 18:54:14.594] [INFO]  Checking modules structure configuration ... 
+[2024-10-24 18:54:14.789] [INFO]  Your modules structure configuration doesn't contain errors :) 
+[2024-10-24 18:54:14.793] [LOG]   Loading module helpers ... 
+[2024-10-24 18:54:14.801] [LOG]   Initializing new module helper ... 
+[2024-10-24 18:54:14.803] [LOG]   Module helper loaded: MMM-Facial-Recognition 
+[2024-10-24 18:54:14.804] [LOG]   No helper found for module: clock. 
+[2024-10-24 18:54:14.983] [LOG]   Initializing new module helper ... 
+[2024-10-24 18:54:14.984] [LOG]   Module helper loaded: calendar 
+[2024-10-24 18:54:14.985] [LOG]   No helper found for module: weather. 
+[2024-10-24 18:54:15.137] [LOG]   Initializing new module helper ... 
+[2024-10-24 18:54:15.137] [LOG]   Module helper loaded: newsfeed 
+[2024-10-24 18:54:15.138] [LOG]   No helper found for module: compliments. 
+[2024-10-24 18:54:15.139] [LOG]   All module helpers loaded. 
+[2024-10-24 18:54:15.158] [LOG]   Starting server on port 8080 ...  
+[2024-10-24 18:54:15.169] [WARN]  You're using a full whitelist configuration to allow for all IPs 
+[2024-10-24 18:54:16.514] [LOG]   Server started ... 
+[2024-10-24 18:54:16.527] [LOG]   Connecting socket for: MMM-Facial-Recognition 
+[2024-10-24 18:54:16.533] [LOG]   Starting module helper: MMM-Facial-Recognition 
+[2024-10-24 18:54:16.534] [LOG]   Connecting socket for: calendar 
+[2024-10-24 18:54:16.535] [LOG]   Starting node helper for: calendar 
+[2024-10-24 18:54:16.535] [LOG]   Connecting socket for: newsfeed 
+[2024-10-24 18:54:16.547] [LOG]   Starting node helper for: newsfeed 
+[2024-10-24 18:54:16.550] [LOG]   Sockets connected & modules started ... 
+[2024-10-24 18:54:18.167] [LOG]   Launching application. 
+[1229079:1024/185419.230844:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.244890:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.256821:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.262967:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.263488:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.266822:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.270705:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.272450:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.272987:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.275910:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.280708:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.281027:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.282703:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.294997:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.312191:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.320623:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.327117:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.332334:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.333298:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.335741:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.340487:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.349094:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.349830:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.352364:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.359366:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.364444:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[1229079:1024/185419.366669:ERROR:gbm_wrapper.cc(74)] Failed to get fd for plane.: No such file or directory (2)
+[1229079:1024/185419.378482:ERROR:gbm_wrapper.cc(257)] Failed to export buffer to dma_buf: No such file or directory (2)
+[2024-10-24 18:54:20.558] [INFO]  System information:
+### SYSTEM:   manufacturer: ; model: ; virtual: false
+### OS:       platform: linux; distro: Debian GNU/Linux; release: 12; arch: arm64; kernel: 6.6.51+rpt-rpi-v8
+### VERSIONS: electron: 31.6.0; used node: 20.17.0; installed node: 20.9.0; npm: 10.1.0; pm2: 5.4.2
+### OTHER:    timeZone: Asia/Calcutta; ELECTRON_ENABLE_GPU: undefined 
+[2024-10-24 18:54:22.884] [LOG]   Create new calendarfetcher for url: https://calendar.google.com/calendar/ical/your-calendar-url.ics - Interval: 3600000 
+[2024-10-24 18:54:23.172] [LOG]   Create new newsfetcher for url: http://feeds.bbci.co.uk/news/rss.xml - Interval: 300000 
+[2024-10-24 18:54:23.187] [ERROR] stderr: python3: can't open file '/home/pi/MagicMirror/modules/MMM-Facial-Recognition/face_recognition.py': [Errno 2] No such file or directory
+ 
+[2024-10-24 18:54:23.189] [LOG]   child process exited with code 2 
+[2024-10-24 18:54:23.594] [INFO]  Newsfeed-Fetcher: reloadInterval set to ttl=900000 for url http://feeds.bbci.co.uk/news/rss.xml 
+[2024-10-24 18:54:24.238] [ERROR] Calendar Error. Could not fetch calendar:  https://calendar.google.com/calendar/ical/your-calendar-url.ics Error: Not Found
+    at NodeHelper.checkFetchStatus (/home/pi/MagicMirror/js/node_helper.js:102:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) 
+[2024-10-24 18:54:24.262] [INFO]  Newsfeed-Fetcher: Broadcasting 36 items. 
+[2024-10-24 18:55:12.001] [LOG]   Shutting down server... 
+[2024-10-24 18:55:12.005] [LOG]   Stopping module helper: MMM-Facial-Recognition 
+[2024-10-24 18:55:12.005] [LOG]   Stopping module helper: calendar 
+[2024-10-24 18:55:12.006] [LOG]   Stopping module helper: newsfeed 
+[2024-10-24 18:55:12.007] [LOG]   Node_helpers stopped ... 
