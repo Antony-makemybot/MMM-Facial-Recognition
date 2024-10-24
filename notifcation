@@ -1,0 +1,33 @@
+{
+    module: "MMM-NotificationTrigger",
+    config: {
+        triggers: [
+            {
+                trigger: "FACE_DETECTED",
+                triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
+                fires: [
+                    {
+                        fire: "SHOW_COMPLIMENT",
+                        payload: (payload) => {
+                            // Custom logic based on conditions
+                            return `Hey ${payload.name}, don't forget your umbrella today!`;
+                        }
+                    },
+                    {
+                        fire: "SHOW_MODULES"
+                    }
+                ]
+            },
+            {
+                trigger: "NO_FACE_DETECTED",
+                triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
+                fires: [
+                    {
+                        fire: "HIDE_MODULES"
+                    }
+                ]
+            }
+        ],
+        log: true  // Enable logging for debugging
+    }
+}
