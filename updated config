@@ -48,6 +48,29 @@ let config = {
 			module: "compliments",
 			position: "lower_third",
 			classes: "default everyone",  // Visible for everyone
+			config: {
+				compliments: {
+					anytime: [
+						"Hey there!",  // Default compliment
+					],
+					morning: [
+						"Good morning!",
+						"Enjoy your day!",
+					],
+					afternoon: [
+						"Hello, sunshine!",
+						"You're looking great!",
+					],
+					evening: [
+						"Wow, you look fantastic!",
+						"Enjoy your evening!",
+					]
+				},
+				updateInterval: 30000,
+				remoteFile: null,
+				fadeSpeed: 4000,
+				notification: "SHOW_COMPLIMENT"  // Custom notification for dynamic compliments
+			}
 		},
 		{
 			module: "weather",
@@ -127,27 +150,18 @@ let config = {
 			config: {
 				triggers: [
 					{
-						trigger: "FACE_DETECTED", // Notification received from face recognition
+						trigger: "FACE_DETECTED",  // Notification received from face recognition
 						triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
 						triggerSender: ["MMM-Face-Reco-DNN"],
-						triggerValueFilter: (payload) => payload.name !== "unknown", // Only for known faces
+						triggerValueFilter: (payload) => payload.name !== "unknown",  // Only for known faces
 						fires: [
 							{
-								fire: "SHOW_MESSAGE",  // Custom notification
+								fire: "SHOW_COMPLIMENT",  // Custom notification to update compliment
 								payload: (payload) => "Hey there, " + payload.name + "!"
 							}
 						]
 					}
 				]
-			}
-		},
-		{
-			module: "MMM-SimpleText",
-			position: "middle_center",  // Display the text in the center of the screen
-			config: {
-				text: "",  // Text will be dynamically updated
-				updateInterval: 3000, // 3 seconds
-				notification: "SHOW_MESSAGE"  // Show text when this notification is received
 			}
 		}
 	]
