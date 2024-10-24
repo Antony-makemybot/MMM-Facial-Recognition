@@ -1,2 +1,8 @@
-pi@raspberrypi:~/MagicMirror/modules/MMM-Facial-Recognition $ python3 train_faces.py
-python3: can't open file '/home/pi/MagicMirror/modules/MMM-Facial-Recognition/train_faces.py': [Errno 2] No such file or directory
+(python-facereco) pi@raspberrypi:~/MagicMirror/modules/MMM-Facial-Recognition $ python3 train_faces.py
+Traceback (most recent call last):
+  File "/home/pi/MagicMirror/modules/MMM-Facial-Recognition/train_faces.py", line 1, in <module>
+    import face_recognition
+  File "/home/pi/MagicMirror/modules/MMM-Facial-Recognition/face_recognition.py", line 8, in <module>
+    with open('modules/MMM-Facial-Recognition/training.pkl', 'rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'modules/MMM-Facial-Recognition/training.pkl'
