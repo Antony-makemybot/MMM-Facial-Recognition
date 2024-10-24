@@ -13,16 +13,74 @@ let config = {
 			module: "alert",
 		},
 		{
+			module: "clock",
+			position: "top_left",
+		},
+		{
+			module: "calendar",
+			header: "Indian Holidays",
+			position: "top_left",
+			config: {
+				calendars: [
+					{
+						fetchInterval: 7 * 24 * 60 * 60 * 1000,
+						symbol: "calendar-check",
+						url: "https://ics.calendarlabs.com/33/3549fd93/India_Holidays.ics"
+					}
+				]
+			}
+		},
+		{
+			module: "compliments",
+			position: "lower_third",
+			config: {
+				compliments: {
+					anytime: ["Hey there!"],  // Default message
+					morning: ["Good morning!"],
+					afternoon: ["Hello, sunshine!"],
+					evening: ["Wow, you look fantastic!"]
+				},
+				updateInterval: 30000,
+				fadeSpeed: 4000,
+			}
+		},
+		{
+			module: "weather",
+			position: "top_right",
+			config: {
+				weatherProvider: "openmeteo",
+				type: "current",
+				lat: 10.00758306891496,
+				lon: 76.35566169991439
+			}
+		},
+		{
+			module: "newsfeed",
+			position: "bottom_bar",
+			config: {
+				feeds: [
+					{
+						title: "BBC",
+						url: "http://feeds.bbci.co.uk/news/world/asia/india/rss.xml"
+					}
+				],
+				showSourceTitle: true,
+				showPublishDate: true,
+				broadcastNewsFeeds: true,
+				broadcastNewsUpdates: true
+			}
+		},
+		{
 			module: 'MMM-Face-Reco-DNN',
 			config: {
 				logoutDelay: 15000,
 				checkInterval: 2000,
-				noFaceClass: 'noface',
-				unknownClass: 'unknown',
-				knownClass: 'known',
-				defaultClass: 'default',
-				everyoneClass: 'everyone',
-				alwaysClass: 'always',
+				noFaceClass: 'noface',  // Class when no face is detected
+				unknownClass: 'unknown',  // Class when unknown face is detected
+				knownClass: 'known',  // Class when known face is detected
+				defaultClass: 'default',  // Default class for modules
+				everyoneClass: 'everyone',  // Class for everyone detected
+				alwaysClass: 'always',  // Always show these modules
 				cascade: 'modules/MMM-Face-Reco-DNN/model/haarcascade_frontalface_default.xml',
 				encodings: 'modules/MMM-Face-Reco-DNN/model/encodings.pickle',
 				brightness: 0,
@@ -32,7 +90,7 @@ let config = {
 				detectionMethod: 'hog',
 				animationSpeed: 0,
 				pythonPath: null,
-				welcomeMessage: false,
+				welcomeMessage: false,  // Disable built-in welcome message
 				extendDataset: false,
 				dataset: 'modules/MMM-Face-Reco-DNN/dataset/',
 				tolerance: 0.6,
@@ -40,26 +98,45 @@ let config = {
 				resolution: [640, 480],
 				processWidth: 300,
 				outputmm: 0,
-				debug: 1,  // Enable debugging to get more information in console
+				debug: 0,
+				delay: 1000000
 			}
 		},
 		{
 			module: "MMM-NotificationTrigger",
 			config: {
 				triggers: [
+					// Trigger for known face detection
 					{
 						trigger: "FACE_DETECTED",
 						triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
+						triggerValueFilter: (payload) => payload.name !== "unknown",  // Check for known face
 						fires: [
 							{
 								fire: "SHOW_COMPLIMENT",
-								payload: (payload) => "Hey there, " + payload.name + "!"
+								payload: (payload) => "Hey there, " + payload.name + "!"  // Send greeting for known face
 							},
 							{
-								fire: "SHOW_MODULES"
+								fire: "SHOW_MODULES"  // Show modules when known face detected
 							}
 						]
 					},
+					// Trigger for unknown face detection
+					{
+						trigger: "FACE_DETECTED",
+						triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
+						triggerValueFilter: (payload) => payload.name === "unknown",  // Check for unknown face
+						fires: [
+							{
+								fire: "SHOW_COMPLIMENT",
+								payload: () => "Hey there, Stranger!"  // Send message for unknown person
+							},
+							{
+								fire: "SHOW_MODULES"  // Show modules when unknown face detected
+							}
+						]
+					},
+					// Trigger for no face detected
 					{
 						trigger: "NO_FACE_DETECTED",
 						triggerSenderFilter: (sender) => sender === 'MMM-Face-Reco-DNN',
@@ -69,8 +146,7 @@ let config = {
 							}
 						]
 					}
-				],
-				log: true // Enable logging for notification triggers
+				]
 			}
 		}
 	]
