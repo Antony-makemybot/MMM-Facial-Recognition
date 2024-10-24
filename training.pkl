@@ -1,15 +1,35 @@
 import face_recognition
 import pickle
+import os
+
+# Path to your dataset folder containing the training images
+TRAINING_IMAGES_DIR = "/home/pi/MagicMirror/MMM-Facial-Recognition/dataset"
 
 known_face_encodings = []
 known_face_names = []
 
-# Add faces to the training data
-image = face_recognition.load_image_file("john.jpg")
-face_encoding = face_recognition.face_encodings(image)[0]
-known_face_encodings.append(face_encoding)
-known_face_names.append("John")
+# Loop through all images in the dataset folder
+for filename in os.listdir(TRAINING_IMAGES_DIR):
+    if filename.endswith(".jpg") or filename.endswith(".png"):
+        # Determine user name based on filename
+        if "sona" in filename.lower():
+            user_name = "Sona"
+        elif "antony" in filename.lower():
+            user_name = "Antony"
+        else:
+            continue  # Skip files that don’t match
 
-# Save the encodings to a file
-with open("modules/MMM-Facial-Recognition/training.pkl", "wb") as f:
+        # Load the image and get the face encoding
+        image_path = os.path.join(TRAINING_IMAGES_DIR, filename)
+        image = face_recognition.load_image_file(image_path)
+        face_encodings = face_recognition.face_encodings(image)
+
+        if face_encodings:
+            known_face_encodings.append(face_encodings[0])  # Append first encoding found
+            known_face_names.append(user_name)  # Append user name
+
+# Save the encodings and names to a file
+with open('/home/pi/MagicMirror/MMM-Facial-Recognition/training.pkl', 'wb') as f:
     pickle.dump((known_face_encodings, known_face_names), f)
+
+print("Training data saved to training.pkl")
