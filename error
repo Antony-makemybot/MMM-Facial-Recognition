@@ -1,5 +1,2 @@
-pi@raspberrypi:~/MagicMirror/modules/MMM-Facial-Recognition $ python3 train_faces.py
-Traceback (most recent call last):
-  File "/home/pi/MagicMirror/modules/MMM-Facial-Recognition/train_faces.py", line 1, in <module>
-    import face_recognition
-ModuleNotFoundError: No module named 'face_recognition'
+(python-facereco) pi@raspberrypi:~/MagicMirror/modules/MMM-Facial-Recognition $ python3 train_faces.py
+Training data saved to training.pkl
