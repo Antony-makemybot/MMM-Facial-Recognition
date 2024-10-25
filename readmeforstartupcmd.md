@@ -31,19 +31,20 @@ This guide provides detailed instructions on creating a script that automaticall
 2. Create a new script:
    ```bash
    nano ~/startup_commands.sh
+   ```
 ### Step 2 : chmod +x ~/startup_commands.sh
 ### Step 3: Edit the Crontab
 Open the crontab file:
 
-```bash
+  ```bash
   Copy code
   crontab -e
-
+```
 ### Add the following line at the end of the file:
 
 ```bash
 @reboot /home/pi/startup_commands.sh
-
+```
 Save and exit the crontab editor (usually Ctrl + X, then Y, and then Enter).
 
 ### Method 2: Using Systemd
@@ -57,7 +58,7 @@ Save and exit the crontab editor (usually Ctrl + X, then Y, and then Enter).
 Create a new service file:
 ```bash
 sudo nano /etc/systemd/system/startup_commands.service
-
+```
 ### Add the following content to the file:
 ```ini
 [Unit]
@@ -70,7 +71,7 @@ RemainAfterExit=true
 
 [Install]
 WantedBy=multi-user.target
-
+```
 Save and exit the editor (usually Ctrl + X, then Y, and then Enter).
 
 ### Step 4: Enable the Service
@@ -78,13 +79,13 @@ Run the following command to enable your service:
 
 ```bash
 sudo systemctl enable startup_commands.service
-
+```
 Testing Your Setup
 Reboot your Raspberry Pi to test if the commands run as expected:
 
 ```bash
 sudo reboot
-
+```
 After rebooting, check if the commands were executed successfully:
 
 If using cron, you may need to check logs or outputs defined in your script.
@@ -92,3 +93,4 @@ If using systemd, check the service status:
 
 ```bash
 sudo systemctl status startup_commands.service
+```
