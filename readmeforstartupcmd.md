@@ -18,10 +18,6 @@ This guide provides detailed instructions on creating a script that automaticall
 - [Troubleshooting](#troubleshooting)
 - [Conclusion](#conclusion)
 
-## Prerequisites
-
-- A Raspberry Pi running Raspbian or another compatible Linux distribution.
-- Basic knowledge of using the terminal.
 
 ## Method 1: Using `cron`
 
@@ -47,7 +43,7 @@ Open the crontab file:
 ```
 Save and exit the crontab editor (usually Ctrl + X, then Y, and then Enter).
 
-### Method 2: Using Systemd
+## Method 2: Using Systemd
 ### Step 1: Create a Shell Script
 (Refer to Method 1, Step 1)
 
