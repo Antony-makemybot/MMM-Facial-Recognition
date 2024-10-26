@@ -75,74 +75,100 @@ let config = {
 				]
 			}
 		},
-		{
-			module: "compliments",
-			position: "lower_third",
-			classes: "Sona",  // Only show for known faces
-			config: {
-				compliments: {
-					anytime: [
-						"Hey there!",
-					],
-					morning: [
-						"Good morning!",
-						"Enjoy your day!",
-					],
-					afternoon: [
-						"Hello, sunshine!",
-						"You're looking great!",
-					],
-					evening: [
-						"Wow, you look fantastic!",
-						"Enjoy your evening!",
-					]
-				},
-				updateInterval: 30000,
-				fadeSpeed: 4000,
-			}
-		},
-        {
-			module: "compliments",
-			position: "lower_third",
-			classes: "Antony",  // Only show for known faces
-			config: {
-				compliments: {
-					anytime: [
-						"Hey there!",
-					],
-					morning: [
-						"Good morning!",
-						"Enjoy your day!",
-					],
-					afternoon: [
-						"Hello, sunshine!",
-						"You're looking great!",
-					],
-					evening: [
-						"Wow, you look fantastic!",
-						"Enjoy your evening!",
-					]
-				},
-				updateInterval: 30000,
-				fadeSpeed: 4000,
-			}
-		},
-        {
+				{
 			module: "compliments",
 			position: "lower_third",
 			classes: "Akshay",  // Only show for known faces
 			config: {
 				compliments: {
 					anytime: [
-						"Hey there!",
+						"Hey there Handsome!",
 					],
 					morning: [
 						"Good morning!",
 						"Enjoy your day!",
 					],
 					afternoon: [
-						"Hello, sunshine!",
+						"You're a star, Akshay!",
 						"You're looking great!",
+					],
+					evening: [
+						"Fantastic job today, Akshay!",
+						"Enjoy your evening!",
+					]
+				},
+				updateInterval: 30000,
+				fadeSpeed: 4000,
+			}
+		},
+				{
+			module: "compliments",
+			position: "lower_third",
+			classes: "Sona",  // Only show for known faces
+			config: {
+				compliments: {
+					anytime: [
+						"Hey there, gorgeous!",
+					],
+					morning: [
+						"Good morning!",
+						"Enjoy your day!",
+					],
+					afternoon: [
+						"You're amazing, Sona!",
+						"You're looking great!",
+					],
+					evening: [
+						"Keep up the great work, Sona!",
+						"Enjoy your evening!",
+					]
+				},
+				updateInterval: 30000,
+				fadeSpeed: 4000,
+			}
+		},
+		{
+			module: "compliments",
+			position: "lower_third",
+			classes: "Antony",  // Only show for known faces
+			config: {
+				compliments: {
+					anytime: [
+						"Hey there Antony!",
+					],
+					morning: [
+						"Good morning!Antony",
+						"Enjoy your day!Antony",
+					],
+					afternoon: [
+						"Hello, Antony!",
+						"Antony,You're looking great!",
+					],
+					evening: [
+						"Wow, you look fantastic!",
+						"Enjoy your evening!",
+					]
+				},
+				updateInterval: 30000,
+				fadeSpeed: 4000,
+			}
+		},
+				{
+			module: "compliments",
+			position: "lower_third",
+			classes: "unknown",  // Only show for known faces
+			config: {
+				compliments: {
+					anytime: [
+						"Hey there Stranger!",
+					],
+					morning: [
+						"Good morning!Stranger",
+						"Enjoy your day!Stranger",
+					],
+					afternoon: [
+						"Hello, Stranger!",
+						"Stranger,You're looking great!",
 					],
 					evening: [
 						"Wow, you look fantastic!",
